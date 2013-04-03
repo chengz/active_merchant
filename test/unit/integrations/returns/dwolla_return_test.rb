@@ -27,8 +27,9 @@ class DwollaReturnTest < Test::Unit::TestCase
     assert_equal "1312616", @dwolla.transaction
     assert @dwolla.test?
   end
-  
+
   private
+
   def http_raw_data_success
     "signature=098d3f32654bd8eebc9db323228879fa2ea12459&test=true&orderId=&amount=0.01&checkoutId=f32b1e55-9612-4b6d-90f9-1c1519e588da&status=Completed&clearingDate=8/28/2012%203:17:18%20PM&transaction=1312616&postback=success"
   end

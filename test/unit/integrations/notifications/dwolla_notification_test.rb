@@ -31,8 +31,7 @@ class DwollaNotificationTest < Test::Unit::TestCase
     assert_equal Money.new(1, 'USD'), @dwolla.amount
   end
 
-  # Replace with real successful acknowledgement code
-  def test_acknowledgement    
+  def test_acknowledgement
     assert_equal true, @dwolla.acknowledge
   end
 
@@ -45,6 +44,7 @@ class DwollaNotificationTest < Test::Unit::TestCase
   end
 
   private
+
   def http_raw_error_data
     %*{"Amount": 0.01, "CheckoutId": "f32b1e55-9612-4b6d-90f9-1c1519e588da", "ClearingDate": "8/28/2012 3:17:18 PM", "Error": "Invalid Credentials", "OrderId": "order-1", "Signature": "098d3f32654bd8eebc9db323228879fa2ea12459", "Status": "Failed", "TestMode": "false", "TransactionId": 1312616}*
   end

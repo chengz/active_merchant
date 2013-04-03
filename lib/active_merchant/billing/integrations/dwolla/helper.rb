@@ -5,14 +5,13 @@ module ActiveMerchant #:nodoc:
     module Integrations #:nodoc:
       module Dwolla
         class Helper < ActiveMerchant::Billing::Integrations::Helper
-
           def initialize(order, account, options = {})
             super
             add_field('name', 'Store Purchase')
 
             if ActiveMerchant::Billing::Base.integration_mode == :test || options[:test]
               add_field('test', 'true')
-            end 
+            end
 
             timestamp = Time.now.to_i.to_s
             add_field('timestamp', timestamp)
@@ -24,7 +23,7 @@ module ActiveMerchant #:nodoc:
             signature = Digest::SHA1.hexdigest(secret + "#{key}&#{timestamp}&#{orderid}")
             add_field('signature', signature)
           end
-          
+
           mapping :account, 'destinationid'
           mapping :credential2, 'key'
           mapping :notify_url, 'callback'
@@ -33,7 +32,7 @@ module ActiveMerchant #:nodoc:
           mapping :amount, 'amount'
           mapping :tax, 'tax'
           mapping :shipping, 'shipping'
-          mapping :order, 'orderid'          
+          mapping :order, 'orderid'
         end
       end
     end
