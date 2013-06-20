@@ -1,4 +1,4 @@
-require 'digest/sha1'
+require "openssl"
 
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
@@ -23,7 +23,7 @@ module ActiveMerchant #:nodoc:
             key = options[:credential2].to_s
             secret = options[:credential3].to_s
             orderid = order.to_s
-            signature = Digest::HMAC.hexdigest("#{key}&#{timestamp}&#{orderid}", secret, Digest::SHA1)
+            signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest::SHA1.new, secret, "#{key}&#{timestamp}&#{orderid}")
             add_field('signature', signature)
           end
 
