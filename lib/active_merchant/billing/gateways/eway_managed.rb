@@ -8,7 +8,7 @@ module ActiveMerchant #:nodoc:
       self.supported_countries = ['AU']
 
       # The card types supported by the payment gateway
-      self.supported_cardtypes = [:visa, :master]
+      self.supported_cardtypes = [:visa, :master, :american_express, :diners_club]
 
       self.default_currency = 'AUD'
 
@@ -139,8 +139,8 @@ module ActiveMerchant #:nodoc:
       def parse(body)
         reply = {}
         xml = REXML::Document.new(body)
-         if root = REXML::XPath.first(xml, "//soap:Fault") then
-           reply=parse_fault(root)
+        if root = REXML::XPath.first(xml, "//soap:Fault") then
+          reply=parse_fault(root)
         else
           if root = REXML::XPath.first(xml, '//ProcessPaymentResponse/ewayResponse') then
             # Successful payment
