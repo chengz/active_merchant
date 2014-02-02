@@ -82,6 +82,7 @@ module ActiveMerchant #:nodoc:
       end
 
       def add_other(post)
+        post[:CustomerInvoiceRef] = options[:order_id]
         post[:Option1] = nil
         post[:Option2] = nil
         post[:Option3] = nil
