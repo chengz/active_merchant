@@ -67,6 +67,8 @@ module ActiveMerchant #:nodoc:
 
         add_expiry(post, options)
 
+        add_ref(post, options)
+
         add_other(post)
 
         commit(money, post)
@@ -81,8 +83,11 @@ module ActiveMerchant #:nodoc:
         post[:CardExpiryYear] = sprintf("%.2i", options[:year])[-2..-1]
       end
 
-      def add_other(post)
+      def add_ref(post, options)
         post[:CustomerInvoiceRef] = options[:order_id]
+      end
+
+      def add_other(post)
         post[:Option1] = nil
         post[:Option2] = nil
         post[:Option3] = nil
